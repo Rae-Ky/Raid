@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Niña Bonita 💗</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="flex items-center justify-center min-height-screen relative py-8 px-4">
+
+    <audio id="bg-music" loop>
+        <source src="Https://" type="audio/mpeg">
+    </audio>
+
+    <!-- Fondo de corazones flotantes dinámicos -->
+    <div id="heart-container" class="absolute inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <!-- PANTALLA 1: BIENVENIDA & SOBRE DE CARTA -->
+    <div id="screen-welcome" class="relative z-10 flex flex-col items-center max-w-lg w-full text-center">
+        <!-- Tarjeta de música flotante -->
+        <div class="mb-4 bg-white/90 backdrop-blur-sm border border-rose-100 rounded-full py-2 px-4 shadow-sm flex items-center gap-3 cursor-pointer select-none" onclick="toggleMusic()">
+            <span id="music-indicator" class="flex h-3 w-3 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-rose-500"></span>
+            </span>
+            <span class="text-xs font-semibold text-rose-500 flex items-center gap-1">
+                <i class="fa-solid id-music-icon fa-music"></i> <span id="music-text">Not Music Sorry... Jeje</span>
+            </span>
+        </div>
+
+        <h1 class="text-3xl md:text-4xl font-bold text-rose-600 mb-2 leading-relaxed">
+            Hola, mi niña bonita 🌸
+        </h1>
+        <p class="text-rose-500 font-semibold mb-8 text-sm md:text-base">
+            Hoy es un día super especial... He preparado un detalle único para ti.
+        </p>
+
+        <!-- Sobre Interactivo-->
+        <div class="envelope-wrapper relative cursor-pointer group" onclick="openEnvelope()">
+            <div class="absolute -top-10 left-1/2 -translate-x-1/2 flex gap-4 text-rose-400 text-lg opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <i class="fa-solid fa-heart animate-bounce" style="animation-delay: 0.1s"></i>
+                <i class="fa-solid fa-heart animate-bounce" style="animation-delay: 0.3s"></i>
+                <i class="fa-solid fa-heart animate-bounce" style="animation-delay: 0.5s"></i>
+            </div>
+
+            <div id="envelope-element" class="envelope w-72 h-44 md:w-80 md:h-48 rounded-b-xl flex items-center justify-center">
+                <div class="envelope-flap"></div>
+                <div class="envelope-paper flex flex-col items-center justify-center text-rose-500">
+                    <p class="font-romantic font-bold text-xs">PARA TI HOY</p>
+                    <i class="fa-solid fa-cake-candles text-2xl mt-1 animate-pulse"></i>
+                </div>
+                <div id="heart-seal" class="absolute z-10 bg-rose-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform -translate-y-2 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-heart text-xl animate-pulse"></i>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-rose-400 text-xs font-bold mt-12 uppercase tracking-widest animate-pulse">
+            💗✨ Toca el sobre para abrir la carta ✨💗
+        </p>
+    </div>
+
+    <!-- PANTALLA 2: CONTENIDO PRINCIPAL (FICHAS) -->
+    <div id="screen-content" class="hidden relative z-10 max-w-5xl w-full flex flex-col items-center">
+        <div class="text-center mb-8 glow-sparkle">
+            <span class="bg-rose-100 text-rose-600 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 inline-block shadow-sm">
+                ¡Feliz Cumpleaños! 🎂
+            </span>
+            <h2 class="text-3xl md:text-5xl font-bold text-rose-600">Para mi niña favorita la mas hermosa</h2>
+            <p class="text-rose-500 text-sm md:text-base mt-2">
+                Prepara tu corazoncito y toca cada una de las 4 fichas de abajo para descubrir lo que contienen:
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mb-10">
+            <!-- Ficha1 -->
+            <div class="card-3d w-full" onclick="flipCard(this, 1)">
+                <div class="card-3d-inner">
+                    <div class="card-front flex flex-col items-center justify-center p-6 gap-4">
+                        <div class="bg-rose-100 text-rose-500 w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-inner">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-rose-600 font-romantic">Te amo 💕</h3>
+                        <span class="text-xs bg-rose-200/50 text-rose-600 px-3 py-1 rounded-full font-semibold">Toca para abrir 💖</span>
+                    </div>
+                    <div class="card-back flex flex-col items-center justify-center p-6 text-center">
+                        <i class="fa-solid fa-heart text-rose-400 text-xl mb-3"></i>
+                        <p class="text-rose-700 text-sm leading-relaxed font-medium">
+                            "Gracias por acompañarme en este camino. Aprecio enormemente tu calidez y cada momento compartido. Lograste encender de nuevo la esperanza que ya daba por perdida sinceramente, no sé qué sería de mí sin ti. Eres la persona mas hermosa que he conocido ♥ "
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ficha2 -->
+            <div class="card-3d w-full" onclick="flipCard(this, 2)">
+                <div class="card-3d-inner">
+                    <div class="card-front flex flex-col items-center justify-center p-6 gap-4">
+                        <div class="bg-rose-100 text-rose-500 w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-inner">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-rose-600 font-romantic">Lo que adoro de ti</h3>
+                        <span class="text-xs bg-rose-200/50 text-rose-600 px-3 py-1 rounded-full font-semibold">Toca para abrir ✨</span>
+                    </div>
+                    <div class="card-back flex flex-col items-center justify-center p-6 text-center">
+                        <i class="fa-solid fa-star text-rose-400 text-xl mb-2"></i>
+                        <ul class="text-rose-700 text-xs text-left space-y-1.5 font-medium mx-auto max-w-[200px]">
+                            <li><i class="fa-solid fa-check text-rose-500 mr-1"></i> Tu voz seria la musica que escucharia todo el dia ♥</li>
+                            <li><i class="fa-solid fa-check text-rose-500 mr-1"></i> Tu maravillosa forma de ser, es tan esplendida que me deja sin palabras c:</li>
+                            <li><i class="fa-solid fa-check text-rose-500 mr-1"></i> Tu sentido del humor todo roto lo amooo, somos twins ✨</li>
+                            <li><i class="fa-solid fa-check text-rose-500 mr-1"></i> LO TIERNA, BONITA, PECHOCHA QUE EREEES LO AMOO ♥</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ficha 3 -->
+            <div class="card-3d w-full" onclick="flipCard(this, 3)">
+                <div class="card-3d-inner">
+                    <div class="card-front flex flex-col items-center justify-center p-6 gap-4">
+                        <div class="bg-rose-100 text-rose-500 w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-inner">
+                            <i class="fa-solid fa-cake-candles"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-rose-600 font-romantic">Cumpleaños</h3>
+                        <span class="text-xs bg-rose-200/50 text-rose-600 px-3 py-1 rounded-full font-semibold">Toca para abrir 🎂</span>
+                    </div>
+                    <div class="card-back flex flex-col items-center justify-center p-6 text-center">
+                        <i class="fa-solid fa-gift text-rose-400 text-xl mb-3"></i>
+                        <p class="text-rose-700 text-sm leading-relaxed font-medium">
+                            "Hoy en tu cumpleaños, deseo que el universo te llene de muchos regalos en el futuro, seas feliz y estes agusto contigo misma, cumple tus metas mi niña se que lo puedes hacer. Espero estar ahi contigo para apoyarte, protegerte y defenderte de todo mal 🎇😽"
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ficha 4 -->
+            <div class="card-3d w-full" onclick="flipCard(this, 4)">
+                <div class="card-3d-inner">
+                    <div class="card-front flex flex-col items-center justify-center p-6 gap-4">
+                        <div class="bg-rose-100 text-rose-500 w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-inner">
+                            <i class="fa-solid fa-ticket"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-rose-600 font-romantic">Poema</h3>
+                        <span class="text-xs bg-rose-200/50 text-rose-600 px-3 py-1 rounded-full font-semibold">Toca para abrir 🎁</span>
+                    </div>
+                    <div class="card-back flex flex-col items-center justify-center p-5 text-center">
+                        <div class="border-2 border-dashed border-rose-300 rounded-xl p-3 bg-rose-50/50">
+                            <span class="text-[10px] font-bold text-rose-500 tracking-wider block uppercase mb-1">CUPÓN DE CUMPLEAÑOS</span>
+                            <h4 class="text-sm font-bold text-rose-600">XXXXXXX</h4>
+                            <p class="text-[11px] text-rose-500 mt-1">Válido por: XXXX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Indicador de Fichas Leídas -->
+        <div class="bg-white/80 border border-rose-100 rounded-full px-6 py-2 shadow-sm text-sm font-semibold text-rose-500 flex items-center gap-2 mb-12 select-none">
+            <span class="flex h-3 w-3 relative">
+                <span id="read-dot-pulse" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
+                <span id="read-dot" class="relative inline-flex rounded-full h-3 w-3 bg-rose-400"></span>
+            </span>
+            <span id="read-counter">Has leído 0 de 4 fichas especiales</span>
+        </div>
+
+        <!-- El Botón Secreto de Clímax -->
+        <button id="btn-secret" onclick="triggerSecretProposal()" class="pulsing-btn bg-gradient-to-r from-pink-500 via-rose-500 to-rose-600 text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95 z-20 flex items-center gap-3">
+            <i class="fa-solid fa-heart-circle-bolt animate-bounce"></i>
+            <span>Tócame cuando hayas leído todo</span>
+            <i class="fa-solid fa-sparkles text-yellow-300"></i>
+        </button>
+    </div>
+
+    <!-- PANTALLA 3(Quieres ser mi novia?) -->
+    <div id="modal-proposal" class="hidden fixed inset-0 z-50 bg-rose-950/40 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white rounded-[32px] border-4 border-rose-200 shadow-2xl p-8 md:p-12 max-w-md w-full text-center relative overflow-hidden transform scale-90 transition-transform duration-500">
+            <div class="absolute top-0 inset-x-0 h-2 bg-gradient-to-r from-pink-400 to-rose-500"></div>
+            <i class="fa-solid fa-heart-pulse text-rose-500 text-5xl mb-4 animate-pulse"></i>
+
+            <h3 class="text-2xl md:text-3xl font-bold text-rose-600 mb-2 font-romantic">Tengo una pregunta...</h3>
+            <p class="text-rose-500 text-sm mb-6 leading-relaxed">
+                Aprovechando este día tan increíble e importante para ti, quiero hacer algo un poco vergonzoso para mi...
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-extrabold text-rose-700 font-romantic mb-8 leading-snug">
+                ¿Quieres ser mi novia? 💖
+            </h2>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative min-h-[140px] sm:min-h-0 w-full">
+                <button onclick="selectOption('SÍ')" class="bg-gradient-to-r from-emerald-400 to-teal-500 text-white font-bold text-xl px-10 py-3.5 rounded-full shadow-lg transform hover:scale-110 hover:shadow-emerald-200/50 active:scale-95 transition-all w-full sm:w-auto">
+                    ¡SÍ! 😍
+                </button>
+                <button onclick="selectOption('NO')" class="bg-gradient-to-r from-rose-400 to-red-500 text-white font-bold text-xl px-10 py-3.5 rounded-full shadow-lg transform hover:scale-110 active:scale-95 transition-all w-full sm:w-auto">
+                    No 😢
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANTALLA 4: FIESTA DE ÉXITO FINAL (SÍ) -->
+    <div id="screen-success" class="hidden relative z-10 max-w-2xl w-full text-center flex flex-col items-center p-8 bg-white/90 backdrop-blur-md rounded-[32px] border-4 border-pink-200 shadow-2xl">
+        <div class="relative w-40 h-40 mb-6">
+            <div class="absolute inset-0 bg-pink-100 rounded-full animate-ping opacity-20"></div>
+            <div class="bg-gradient-to-tr from-pink-500 to-rose-400 text-white w-full h-full rounded-full flex items-center justify-center text-7xl shadow-lg">
+                <i class="fa-solid fa-heart animate-pulse"></i>
+            </div>
+            <i class="fa-solid fa-sparkles text-yellow-400 text-2xl absolute -top-1 -right-1 animate-bounce"></i>
+            <i class="fa-solid fa-sparkles text-yellow-400 text-2xl absolute -bottom-1 -left-1 animate-bounce" style="animation-delay: 0.3s"></i>
+        </div>
+
+        <h1 class="text-3xl md:text-5xl font-extrabold text-rose-600 mb-4 leading-normal font-romantic">
+            ¡SIII! 🎉💖
+        </h1>
+        <p class="text-rose-500 text-lg font-bold mb-6">
+            ¡Me acabas de hacer la persona más feliz del universo! ✨
+        </p>
+        <p class="text-rose-700 text-base leading-relaxed mb-8 font-medium">
+            ¡Gracias por decir que sí y por permitirme ser parte de tu vida! Te prometo cuidarte, hacerte sonreír todos los días y celebrar a tu lado miles de cumpleaños más. Eres mi mundo entero. ¡Feliz cumpleaños, mi hermosa novia! 😍🌸👑
+        </p>
+
+        <div class="border-t border-rose-100 pt-6 w-full flex flex-col items-center">
+            <p class="text-rose-400 text-xs font-bold uppercase tracking-widest mb-2">Empezemos Nuestras videas juntos cariño ♥</p>
+            <p class="text-rose-600 font-bold text-lg font-romantic flex items-center gap-2">
+                Hoy es oficial chi?💖
+            </p>
+        </div>
+    </div>
+
+    <!-- PANTALLA 5: RESPUESTA TRISTE (NO) -->
+    <div id="screen-sad" class="hidden relative z-10 max-w-2xl w-full text-center flex flex-col items-center p-8 bg-white/90 backdrop-blur-md rounded-[32px] border-4 border-gray-200 shadow-2xl">
+        <div class="bg-gradient-to-tr from-gray-400 to-slate-500 text-white w-32 h-32 rounded-full flex items-center justify-center text-5xl shadow-lg mb-6">
+            <i class="fa-solid fa-heart-crack animate-pulse"></i>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-700 mb-4 font-romantic">
+            Entiendo... 💔
+        </h1>
+        <p class="text-gray-600 text-base leading-relaxed mb-6 font-medium">
+            No te preocupes, mi niña linda. Mi cariño por ti y mis deseos de que pases el mejor cumpleaños de tu vida siguen siendo exactamente los mismos. Gracias por ser tan honesta conmigo y por leer todo el detalle que hice para ti. 🌸✨
+        </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

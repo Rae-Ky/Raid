@@ -1,0 +1,44 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 50%, #ffd1d1 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+h1, h2, .font-romantic {
+    font-family: 'Comfortaa', cursive;
+}
+.heart-bg {
+    position: absolute;
+    font-size: 24px;
+    color: rgba(244, 63, 94, 0.2);
+    animation: floatUp 8s linear infinite;
+    z-index: 0;
+    pointer-events: none;
+}
+@keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.6); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+}
+.envelope-wrapper { perspective: 1000px; transition: all 1s ease-in-out; }
+.envelope { position: relative; background-color: #fca5a5; box-shadow: 0 15px 30px rgba(244, 63, 94, 0.15); transition: transform 0.8s ease; }
+.envelope.open { transform: translateY(150px) rotateX(10deg); }
+.envelope-flap { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #f87171; clip-path: polygon(0 0, 50% 50%, 100% 0); transform-origin: top; transition: transform 0.6s ease 0.2s; z-index: 3; }
+.envelope.open .envelope-flap { transform: rotateX(180deg); z-index: 1; }
+.envelope-paper { position: absolute; bottom: 10px; left: 5%; width: 90%; height: 90%; background: white; border-radius: 8px; transition: transform 0.8s ease 0.4s; z-index: 2; padding: 20px; box-shadow: inset 0 0 15px rgba(0,0,0,0.05); }
+.envelope.open .envelope-paper { transform: translateY(-120px); }
+.card-3d { perspective: 1000px; height: 300px; }
+.card-3d-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform-style: preserve-3d; cursor: pointer; }
+.card-3d.flipped .card-3d-inner { transform: rotateY(180deg); }
+.card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 24px; box-shadow: 0 10px 25px rgba(244, 63, 94, 0.1); }
+.card-front { background: linear-gradient(135deg, #fff0f0 0%, #ffe4e6 100%); border: 2px solid #fecdd3; }
+.card-back { background: white; border: 3px solid #fda4af; transform: rotateY(180deg); }
+.pulsing-btn { animation: pulse-glow 2s infinite; }
+@keyframes pulse-glow {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(244, 63, 94, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+.glow-sparkle { animation: floatRandom 4s infinite alternate ease-in-out; }
+@keyframes floatRandom { 0% { transform: translateY(0px) scale(1); opacity: 0.7; } 100% { transform: translateY(-15px) scale(1.15); opacity: 1; } }
